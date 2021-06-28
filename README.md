@@ -6,7 +6,7 @@ It is currently under development, so it is not yet up and running as a service.
 So far, I have <b>completed the API prototype for the backend and connected the API to the frontend</b>. The <b>next step</b> is to implement the <b>quiz function</b>.
 
 
-|![current_page](https://user-images.githubusercontent.com/38023004/123625788-174cfb80-d84b-11eb-806e-b606fdee79dc.png)|
+|![PixivQuizButtonDemo](https://user-images.githubusercontent.com/38023004/123634487-76b00900-d855-11eb-91b0-37bfd60f20c9.gif)|
 |:-:|
 
 ## Architecture
