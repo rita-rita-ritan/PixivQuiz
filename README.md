@@ -3,11 +3,11 @@ PixivQuiz is a game where you look at the works in the Pixiv ranking and guess t
 
 ## What I'v done and what I'll do
 It is currently under development, so it is not yet up and running as a service.
-So far, I have <b>completed the API prototype for the backend and connected the API to the frontend</b>. The <b>next step</b> is to work on the frontend and make it a <b>more stylish page</b>. The current look of the page is as follows.
+So far, I have <b>completed the API prototype for the backend and connected the API to the frontend</b>. The <b>next step</b> is to implement the <b>quiz function</b>.
 
 
-![current_page](https://user-images.githubusercontent.com/38023004/123603486-e2ce4500-d834-11eb-89c5-2949ddf20de7.png)
-
+|![current_page](https://user-images.githubusercontent.com/38023004/123625788-174cfb80-d84b-11eb-806e-b606fdee79dc.png)|
+|:-:|
 
 ## Architecture
 - Frontend: Vue.js

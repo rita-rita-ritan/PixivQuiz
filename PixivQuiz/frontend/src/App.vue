@@ -39,14 +39,33 @@
     </v-app-bar>
 
     <v-main>
-      <div id="app">
-        <h2>
-          PixivQuiz is a game where you look at the works in the Pixiv ranking and guess the painter.
-        </h2>
-        <br>
-        <h3>API Result</h3>
-        {{ info }}
-      </div>
+      <v-container>
+          PixivQuiz is a game where you look at the works in the Pixiv ranking
+          and guess the painter.
+      </v-container>
+      <v-container>
+        <v-row justify="center">
+          <h2>API Result</h2>
+        </v-row>
+        <v-row justify="center">
+          {{ info }}
+        </v-row> 
+      </v-container>
+      <br>
+      <v-container>
+        <v-row
+          justify="center"
+        >
+          <v-btn
+            depressed
+            color="light-blue lighten-2"
+            dark
+          >
+            NEXT
+          </v-btn>
+        </v-row>
+      </v-container>
+
     </v-main>
   </v-app>
 </template>
