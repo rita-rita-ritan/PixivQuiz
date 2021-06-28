@@ -60,6 +60,7 @@
             depressed
             color="light-blue lighten-2"
             dark
+            v-on:click="getNextImage"
           >
             NEXT
           </v-btn>
@@ -91,5 +92,14 @@ export default {
       .get('/images')
       .then(response => (this.info = response.data))
   },
+  methods: {
+    getNextImage: function (event) {
+      if (event) {
+        axios
+          .get('/images')
+          .then(response => (this.info = response.data))
+      }
+    }
+  }
 };
 </script>
