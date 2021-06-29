@@ -89,14 +89,14 @@ export default {
   },
   mounted () {
     axios
-      .get('/images')
+      .get('/image')
       .then(response => (this.info = response.data))
   },
   methods: {
     getNextImage: function (event) {
       if (event) {
         axios
-          .get('/images')
+          .get('/image')
           .then(response => (this.info = response.data))
       }
     }
