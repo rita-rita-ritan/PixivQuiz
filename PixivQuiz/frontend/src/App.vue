@@ -39,31 +39,45 @@
     </v-app-bar>
 
     <v-main>
-      <v-container>
-          PixivQuiz is a game where you look at the works in the Pixiv ranking
-          and guess the painter.
-      </v-container>
-      <v-container>
-        <v-row justify="center">
-          <h2>API Result</h2>
-        </v-row>
-        <v-row justify="center">
-          {{ info }}
-        </v-row> 
-      </v-container>
-      <br>
-      <v-container>
+      <v-container class="mt-14 grey--text text--darken-1">
         <v-row
-          justify="center"
+        justify="center"
         >
-          <v-btn
-            depressed
-            color="light-blue lighten-2"
-            dark
-            v-on:click="getNextImage"
+          <h1>絵師当てクイズ !</h1>
+        </v-row>
+      </v-container>
+
+      <ImageCard :imageResponse='imageResponse'></ImageCard>
+      <AnswerPanel
+        :imageResponse='imageResponse'
+        :answerIsOpen='answerIsOpen'
+        v-on:show-answer="answerIsOpen = true"
+      ></AnswerPanel>
+
+      <v-row
+        justify="center"
+      >
+        <v-btn
+          depressed
+          color="light-blue lighten-2"
+          dark
+          v-on:click="onclickNext"
+          class="ma-10"
+        >
+          NEXT
+        </v-btn>
+      </v-row>
+
+      <v-container class="mb-10 grey--text text--darken-1">
+        <v-row
+        justify="center"
+        >
+          <a 
+            href="https://www.pixiv.net/ranking.php?mode=daily&content=illust"
+            target="_blank"
           >
-            NEXT
-          </v-btn>
+            現在のイラストデイリーランキング
+          </a>
         </v-row>
       </v-container>
 
@@ -72,33 +86,43 @@
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld';
 import axios from 'axios'
+import ImageCard from './components/ImageCard.vue'
+import AnswerPanel from './components/AnswerPanel.vue'
 
 export default {
   name: 'App',
 
-  // components: {
-  //   HelloWorld,
-  // },
+  components: {
+    ImageCard,
+    AnswerPanel
+  },
 
   data () {
     return {
-      info: null
+      imageResponse: null,
+      answerIsOpen: true
     }
   },
   mounted () {
     axios
       .get('/image')
-      .then(response => (this.info = response.data))
+      .then(response => (this.imageResponse = response.data))
   },
   methods: {
-    getNextImage: function (event) {
+    onclickNext: function (event) {
       if (event) {
-        axios
-          .get('/image')
-          .then(response => (this.info = response.data))
+        this.hideAnswer()
+        this.getNextImage()
       }
+    },
+    getNextImage: function () {
+      axios
+        .get('/image')
+        .then(response => (this.imageResponse = response.data))
+    },
+    hideAnswer: function () {
+      this.answerIsOpen = false
     }
   }
 };
