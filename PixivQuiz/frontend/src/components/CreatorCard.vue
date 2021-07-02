@@ -25,8 +25,7 @@
     </v-card-text>
 
     <v-img
-      v-if="creatorImageExists"
-      v-on:error="hideCreatorImage"
+      v-if="imageResponse.opengraph_creator_image_url"
       :src=imageResponse.opengraph_creator_image_url
     ></v-img>
   </v-card>
@@ -37,7 +36,6 @@
     data: () => ({
       loading: false,
       selection: 1,
-      creatorImageExists: true
     }),
 
     props: {
@@ -49,12 +47,6 @@
         this.loading = true
 
         setTimeout(() => (this.loading = false), 2000)
-      },
-      revealCreatorImage: function () {
-        this.creatorImageExists = true
-      },
-      hideCreatorImage: function () {
-        this.creatorImageExists = false
       },
     },
   }

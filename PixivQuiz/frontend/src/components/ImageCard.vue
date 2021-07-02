@@ -3,7 +3,7 @@
     :loading="loading"
     class="mx-auto my-12"
     max-width="80%"
-    :href=imageResponse.work_url
+    :href="(imageResponse || '').work_url"
     target="_blank"
   >
     <template slot="progress">
@@ -14,18 +14,19 @@
       ></v-progress-linear>
     </template>
     <v-img
-      :src=imageResponse.opengraph_work_image_url
+      v-if="(imageResponse || '').opengraph_work_image_url"
+      :src="(imageResponse || '').opengraph_work_image_url"
     ></v-img>
 
-    <v-card-title>{{imageResponse.work_title}}</v-card-title>
+    <v-card-title>{{(imageResponse || '').work_title}}</v-card-title>
 
     <v-card-text>
 
       <div class="text-subtitle-1">
-        イラストデイリーランキング{{imageResponse.rank}}位
+        イラストデイリーランキング{{(imageResponse || '').rank}}位
       </div>
 
-      <div class="ms-n2">（{{imageResponse.timestamp}}時点）</div>
+      <div class="ms-n2">（{{(imageResponse || '').timestamp}}時点）</div>
     </v-card-text>
   </v-card>
 </template>

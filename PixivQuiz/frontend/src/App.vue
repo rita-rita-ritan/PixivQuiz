@@ -50,8 +50,7 @@
       <ImageCard :imageResponse='imageResponse'></ImageCard>
       <AnswerPanel
         :imageResponse='imageResponse'
-        :answerIsOpen='answerIsOpen'
-        v-on:show-answer="answerIsOpen = true"
+        ref="answerPanel"
       ></AnswerPanel>
 
       <v-row
@@ -63,6 +62,7 @@
           dark
           v-on:click="onclickNext"
           class="ma-10"
+          v-bind:disabled="isDisabledNextButton"
         >
           NEXT
         </v-btn>
@@ -95,13 +95,13 @@ export default {
 
   components: {
     ImageCard,
-    AnswerPanel
+    AnswerPanel,
   },
 
   data () {
     return {
       imageResponse: null,
-      answerIsOpen: true
+      isDisabledNextButton: false
     }
   },
   mounted () {
@@ -112,7 +112,9 @@ export default {
   methods: {
     onclickNext: function (event) {
       if (event) {
-        this.hideAnswer()
+        this.scrollTop()
+        this.disableNextButton()
+        this.$refs.answerPanel.onNextButtonClicked()
         this.getNextImage()
       }
     },
@@ -121,8 +123,18 @@ export default {
         .get('/image')
         .then(response => (this.imageResponse = response.data))
     },
-    hideAnswer: function () {
-      this.answerIsOpen = false
+    disableNextButton: function () {
+      this.isDisabledNextButton = true
+      setTimeout(this.enableNextButton,1000);
+    },
+    enableNextButton: function() {
+      this.isDisabledNextButton = false
+    },
+    scrollTop: function() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
     }
   }
 };
